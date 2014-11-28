@@ -1,9 +1,13 @@
 //Valor de las notas.
 
-int tonica = 0x40;
-int terceraMayor = 0x45;
-int quinta = 0x49;
-int Gsus4 = 0x54;
+
+const int BUTTON_PIN = 2;
+
+int tonica = 72;
+int terceraMayor = 76;
+int quinta = 79;
+int Gsus4 = 83;
+boolean pin = LOW;
 
 void setup()
 {
@@ -12,10 +16,19 @@ void setup()
 
 void loop()
 {
-  noteOn(0x90,tonica,0x50);
-  noteOn(0x90,terceraMayor,0x50);
-  noteOn(0x90,quinta,0x50);
-  noteOn(0x90,Gsus4,0x50);
+  pin = digitalRead(BUTTON_PIN);
+  if (!pin)
+  {
+  noteOn(144,tonica,0x50);
+  noteOn(144,terceraMayor,0x50);
+  noteOn(144,quinta,0x50);
+  noteOn(144,Gsus4,0x50);
+  delay(1000);
+  noteOn(128,tonica,0x30);
+  noteOn(128,terceraMayor,0x30);
+  noteOn(128,quinta,0x30);
+  noteOn(128,Gsus4,0x30);
+  }
 }
 
 void noteOn(int cmd, int pitch, int velocity) 
